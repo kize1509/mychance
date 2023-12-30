@@ -26,5 +26,5 @@ app.use(express.json());
 app.use("/data", routerVideo);
 
 server.listen(PORT, () => {
-  console.log("LISTENING ON PORT: " + PORT + "...");
+  console.log("SLUSA NA PORTU: " + PORT + "...");
 });
