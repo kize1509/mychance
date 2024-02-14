@@ -34,12 +34,16 @@ class RootScreen extends StatelessWidget {
         }
       } else {
         if (context.mounted) {
-          Navigator.of(context).push(
+          Navigator.pushReplacement(
+            context,
             MaterialPageRoute(
-                builder: (context) => ConfirmScreen(
-                      videoFile: File(video!.path),
-                      videoPath: video.path,
-                    )),
+              builder: (BuildContext context) {
+                return ConfirmScreen(
+                  videoFile: File(video!.path),
+                  videoPath: video.path,
+                );
+              },
+            ),
           );
         }
       }
