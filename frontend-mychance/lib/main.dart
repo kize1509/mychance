@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'MyChance',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 104, 105, 26)),
+            seedColor: const Color.fromRGBO(201, 186, 131, 1)),
         useMaterial3: true,
       ),
       home: const RootScreen(),

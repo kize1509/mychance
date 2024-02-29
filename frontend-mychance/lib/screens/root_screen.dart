@@ -2,10 +2,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mychance/screens/confirm_screen.dart';
+import 'package:mychance/screens/main_screen.dart';
 import 'package:video_player/video_player.dart';
 
 class RootScreen extends StatelessWidget {
-  const RootScreen({Key? key}) : super(key: key);
+  const RootScreen({super.key});
 
   pickVideo(ImageSource src, BuildContext context) async {
     var video = await ImagePicker().pickVideo(source: src);
@@ -93,12 +94,18 @@ class RootScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/backgroundWhite.png'),
+            fit: BoxFit.fill,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 280,
+              height: 100,
             ),
             const Image(
               image: AssetImage('images/myChanceLogo_white.png'),
@@ -106,8 +113,8 @@ class RootScreen extends StatelessWidget {
                       ThemeMode.dark
                   ? const AssetImage('images/myChanceLogo_white.png')
                   : const AssetImage('images/myChanceLogo_black.png'), */
-              alignment: Alignment(200, 100),
-              height: 110,
+              alignment: Alignment(250, 250),
+              height: 250,
             ),
             Container(
               height: 250,
@@ -128,11 +135,23 @@ class RootScreen extends StatelessWidget {
               children: [
                 FloatingActionButton.extended(
                   heroTag: 'browseFeed',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const MainScreen();
+                        },
+                      ),
+                    );
+                  },
                   label: const Text("  Browse feed  "),
                 ),
               ],
             ),
+            const SizedBox(
+              height: 10,
+            )
           ],
         ),
       ),
