@@ -1,5 +1,8 @@
+import 'dart:convert';
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:http/http.dart' as http;
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
@@ -9,49 +12,91 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
-  late VideoPlayerController videoPlayerController;
-  late Uri url;
+  late List<VideoPlayerController> videoPlayerController;
+  late List<ChewieController> chewieController;
+  List<String> videoList = [];
+  final PageController pageController = PageController(initialPage: 0);
+
+  Future<void> fetchVideoList() async {
+    final response = await http
+        .get(Uri.parse('http://ceca.ddns.net/hls/playlist/unwatched/1'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      videoList = data.map((video) => video['path'].toString()).map((videoUrl) {
+        return videoUrl.replaceAll(RegExp(r'\.mp4$'), '');
+      }).toList();
+      print(videoList);
+      initializePlayer();
+    } else {
+      throw Exception('Failed to load video list');
+    }
+  }
+
+  void initializePlayer() {
+    videoPlayerController = videoList
+        .map((videoUrl) => VideoPlayerController.networkUrl(
+            Uri.parse('http://ceca.ddns.net/hls/$videoUrl/stream.m3u8?id=1')))
+        .toList();
+
+    chewieController = videoPlayerController
+        .map((controller) => ChewieController(
+              videoPlayerController: controller,
+              aspectRatio: 9 / 16,
+              looping: true,
+              autoPlay: false,
+              allowFullScreen: false,
+              allowPlaybackSpeedChanging: false,
+              autoInitialize: true,
+            ))
+        .toList();
+    chewieController[0].play();
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
-    videoPlayerController = VideoPlayerController.networkUrl(url)
-      ..initialize().then((value) {
-        videoPlayerController.play();
-        videoPlayerController.setVolume(1);
-      });
+    fetchVideoList();
   }
 
   @override
   void dispose() {
-    videoPlayerController.dispose();
+    pageController.dispose();
+    for (var controller in videoPlayerController) {
+      controller.dispose();
+    }
+    for (var chewieController in chewieController) {
+      chewieController.dispose();
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView.builder(
-        itemCount: 2,
-        controller: PageController(initialPage: 0, viewportFraction: 1),
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          return const Stack(
-            children: [
-              //videoPlayer(),
-            ],
-          );
-        },
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+              controller: pageController,
+              onPageChanged: (pageNumber) {
+                setState(() {
+                  chewieController[pageNumber - 1].pause();
+                  chewieController[pageNumber].play();
+                });
+              },
+              itemCount: videoList.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return Chewie(
+                  controller: chewieController[index],
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
-
-  Widget videoPlayer() => Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          color: Colors.black,
-        ),
-        child: VideoPlayer(videoPlayerController),
-      );
 }

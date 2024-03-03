@@ -58,7 +58,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
 
   Future<void> uploadVideoToServer(File videoFile) async {
     try {
-      var uploadUrl = Uri.parse('http://bajaga.ddns.net/data/single?id=1');
+      var uploadUrl = Uri.parse('http://ceca.ddns.net/data/single?id=1');
 
       var request = http.MultipartRequest('POST', uploadUrl);
 

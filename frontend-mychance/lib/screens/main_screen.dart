@@ -24,8 +24,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: SizedBox(
-        height: 67,
+      bottomNavigationBar: Container(
+        height: 56,
+        decoration: const BoxDecoration(color: Colors.black87),
         child: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -44,8 +45,8 @@ class _MainScreenState extends State<MainScreen> {
             backgroundColor: Colors.transparent,
             selectedItemColor: const Color.fromRGBO(200, 174, 83, 1),
             unselectedItemColor: Colors.white,
-            iconSize: 25,
-            selectedIconTheme: const IconThemeData(size: 29),
+            iconSize: 32,
+            selectedIconTheme: const IconThemeData(size: 36),
             unselectedFontSize: 0,
             unselectedLabelStyle: const TextStyle(height: 0),
             currentIndex: pageId,
@@ -63,8 +64,8 @@ class _MainScreenState extends State<MainScreen> {
                   children: [
                     Image.asset(
                       'images/myChanceLogo_black1.png',
-                      width: pageId == 2 ? 29 : 25,
-                      height: pageId == 2 ? 29 : 25,
+                      width: pageId == 2 ? 24 : 22,
+                      height: pageId == 2 ? 24 : 22,
                       fit: BoxFit.cover,
                     ),
                     Text(
@@ -72,7 +73,8 @@ class _MainScreenState extends State<MainScreen> {
                       style: TextStyle(
                           color: pageId == 2
                               ? const Color.fromRGBO(200, 174, 83, 1)
-                              : Colors.white),
+                              : Colors.white,
+                          fontSize: 10),
                     )
                   ],
                 ),
