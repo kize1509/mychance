@@ -16,6 +16,7 @@ class _FeedScreenState extends State<FeedScreen> {
   late List<ChewieController> chewieController;
   List<String> videoList = [];
   final PageController pageController = PageController(initialPage: 0);
+  int perviousPage = 0;
 
   Future<void> fetchVideoList() async {
     final response = await http
@@ -33,24 +34,33 @@ class _FeedScreenState extends State<FeedScreen> {
     }
   }
 
-  void initializePlayer() {
+  void initializePlayer() async {
     videoPlayerController = videoList
         .map((videoUrl) => VideoPlayerController.networkUrl(
             Uri.parse('http://ceca.ddns.net/hls/$videoUrl/stream.m3u8?id=1')))
         .toList();
 
+    await videoPlayerController[0].initialize();
+
     chewieController = videoPlayerController
-        .map((controller) => ChewieController(
-              videoPlayerController: controller,
-              aspectRatio: 9 / 16,
-              looping: true,
-              autoPlay: false,
-              allowFullScreen: false,
-              allowPlaybackSpeedChanging: false,
-              autoInitialize: true,
-            ))
+        .map(
+          (controller) => ChewieController(
+            videoPlayerController: controller,
+            aspectRatio: 9 / 16,
+            looping: true,
+            autoPlay: false,
+            allowFullScreen: false,
+            allowPlaybackSpeedChanging: false,
+            autoInitialize: true,
+            allowedScreenSleep: false,
+            hideControlsTimer: const Duration(seconds: 2),
+          ),
+        )
         .toList();
-    chewieController[0].play();
+    if (videoPlayerController[0].value.isInitialized) {
+      chewieController[0].play();
+    }
+
     setState(() {});
   }
 
@@ -75,15 +85,24 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black87,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
             child: PageView.builder(
               controller: pageController,
               onPageChanged: (pageNumber) {
                 setState(() {
-                  chewieController[pageNumber - 1].pause();
-                  chewieController[pageNumber].play();
+                  if (perviousPage < pageNumber) {
+                    chewieController[pageNumber - 1].pause();
+                    chewieController[pageNumber].play();
+                    perviousPage = pageNumber;
+                  } else {
+                    chewieController[pageNumber + 1].pause();
+                    chewieController[pageNumber].play();
+                    perviousPage = pageNumber;
+                  }
                 });
               },
               itemCount: videoList.length,

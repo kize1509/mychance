@@ -121,6 +121,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     myProjectsButtonColor = selectedColor;
                     oldProjectsButtonColor = unselectedColor;
                     oldProjects = false;
+                    pageControllerOld.jumpToPage(0);
+                    shownProjectOld = 0;
                   });
                 },
                 child: Text(
@@ -140,6 +142,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     oldProjectsButtonColor = selectedColor;
                     myProjectsButtonColor = unselectedColor;
                     oldProjects = true;
+                    pageControllerNew.jumpToPage(0);
+                    shownProjectNew = 0;
                   });
                 },
                 child: Text(
