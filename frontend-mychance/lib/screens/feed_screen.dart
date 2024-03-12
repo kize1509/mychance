@@ -47,8 +47,8 @@ class _FeedScreenState extends State<FeedScreen> {
       loadList.add(videoList[i]);
     }
     videoPlayerController = loadList
-        .map((videoUrl) => VideoPlayerController.networkUrl(
-            Uri.parse('http://ceca.ddns.net/hls/$videoUrl/stream.m3u8?id=1')))
+        .map((videoUrl) => VideoPlayerController.networkUrl(Uri.parse(
+            'http://ceca.ddns.net:80/hls/$videoUrl/stream.m3u8?id=1')))
         .toList();
 
     await videoPlayerController[0].initialize();
@@ -57,32 +57,34 @@ class _FeedScreenState extends State<FeedScreen> {
       chewieController = videoPlayerController
           .map(
             (controller) => ChewieController(
-              videoPlayerController: controller,
-              aspectRatio: 9 / 16,
-              looping: true,
-              autoPlay: false,
-              allowFullScreen: false,
-              allowPlaybackSpeedChanging: false,
-              autoInitialize: true,
-              allowedScreenSleep: false,
-              hideControlsTimer: const Duration(seconds: 2),
-            ),
+                videoPlayerController: controller,
+                aspectRatio: 9 / 16,
+                looping: true,
+                autoPlay: false,
+                allowFullScreen: false,
+                allowPlaybackSpeedChanging: false,
+                autoInitialize: true,
+                allowedScreenSleep: false,
+                hideControlsTimer: const Duration(seconds: 2),
+                showControlsOnInitialize: false,
+                showOptions: false),
           )
           .toList();
     } else {
       chewieController.addAll(videoPlayerController
           .map(
             (controller) => ChewieController(
-              videoPlayerController: controller,
-              aspectRatio: 9 / 16,
-              looping: true,
-              autoPlay: false,
-              allowFullScreen: false,
-              allowPlaybackSpeedChanging: false,
-              autoInitialize: true,
-              allowedScreenSleep: false,
-              hideControlsTimer: const Duration(seconds: 2),
-            ),
+                videoPlayerController: controller,
+                aspectRatio: 9 / 16,
+                looping: true,
+                autoPlay: false,
+                allowFullScreen: false,
+                allowPlaybackSpeedChanging: false,
+                autoInitialize: true,
+                allowedScreenSleep: false,
+                hideControlsTimer: const Duration(seconds: 2),
+                showControlsOnInitialize: false,
+                showOptions: false),
           )
           .toList());
     }
@@ -115,7 +117,7 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
+      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

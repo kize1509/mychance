@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mychance/screens/feed_screen.dart';
+import 'package:mychance/screens/messanger_screen.dart';
 import 'package:mychance/screens/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
   int pageId = 2;
 
   final pages = [
-    const Text('Messages'),
+    const MessangerScreen(),
     const Text('Trending'),
     const FeedScreen(),
     const Text('Most funded'),
@@ -26,13 +27,17 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       bottomNavigationBar: Container(
         height: 56,
-        decoration: const BoxDecoration(color: Colors.black87),
+        decoration: const BoxDecoration(color: Colors.black),
         child: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20.0),
               topRight: Radius.circular(20.0),
             ),
+            border: Border(
+                top: BorderSide(
+              color: Colors.white,
+            )),
             color: Colors.black,
           ),
           child: BottomNavigationBar(

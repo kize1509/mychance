@@ -32,7 +32,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
     double frameRate = 30.0;
 
     Directory tempDir = await getTemporaryDirectory();
-    String outputPath = '${tempDir.path}/compressed_video7.mp4';
+    String outputPath = '${tempDir.path}/video1.mp4';
 
     String command =
         "-i $videoPath -c:v libx264 -b:v $videoBitrate -c:a aac -b:a $audioBitrate -strict experimental -ac $audioChannels -vf 'scale=$maxWidth:$maxHeight' -r $frameRate $outputPath";
@@ -58,7 +58,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
 
   Future<void> uploadVideoToServer(File videoFile) async {
     try {
-      var uploadUrl = Uri.parse('http://ceca.ddns.net/data/single?id=1');
+      var uploadUrl = Uri.parse('http://ceca.ddns.net:51000/data/single');
 
       var request = http.MultipartRequest('POST', uploadUrl);
 
