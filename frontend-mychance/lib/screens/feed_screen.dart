@@ -24,6 +24,7 @@ class _FeedScreenState extends State<FeedScreen> {
   List<String> videoList = [];
   final PageController pageController = PageController(initialPage: 0);
   int perviousPage = 0;
+  int length = 2;
 
   Future<void> fetchVideoList() async {
     final response = await http
@@ -141,9 +142,10 @@ class _FeedScreenState extends State<FeedScreen> {
                       pageNumber != 9) {
                     initializePlayer(pageNumber + 2, pageNumber + 4, false);
                   }
+                  length = chewieController.length;
                 });
               },
-              itemCount: videoList.length,
+              itemCount: length,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return Stack(
@@ -302,7 +304,78 @@ class _FeedScreenState extends State<FeedScreen> {
               Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.6,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    topLeft: Radius.circular(20)),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 20,
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    const Text(
+                                      'Comments',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(
+                                        left: 25,
+                                        right: 25,
+                                        top: 10,
+                                        bottom: 10,
+                                      ),
+                                      height: 2,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[800],
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: ListView.builder(
+                                        itemCount: 10,
+                                        itemBuilder: (index, context) {
+                                          return commentTile('@vargenzi');
+                                        },
+                                      ),
+                                    ),
+                                    TextField(
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        labelText: 'Add comment',
+                                        suffixIcon: IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(Icons.send),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                     icon: const Icon(
                       CupertinoIcons.chat_bubble_fill,
                       color: Colors.white,
@@ -339,6 +412,12 @@ class _FeedScreenState extends State<FeedScreen> {
                         Text(
                           '@vargicon',
                           style: TextStyle(
+                              shadows: [
+                                Shadow(
+                                    blurRadius: 10.0,
+                                    color: selectedColor,
+                                    offset: const Offset(2.0, 2.0))
+                              ],
                               color: selectedColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 20),
@@ -363,5 +442,69 @@ class _FeedScreenState extends State<FeedScreen> {
             ],
           ),
         ],
+      );
+
+  Widget commentTile(String username) => Container(
+        margin: const EdgeInsets.only(bottom: 5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset(
+                        'images/myChanceLogo_white.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Text(
+                          username,
+                          style: TextStyle(
+                              color: selectedColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 20, left: 15),
+                      child: SizedBox(
+                        width: 280,
+                        child: Text(
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 45, top: 1),
+              child: GestureDetector(
+                onTap: () {},
+                child: const Text(
+                  'Reply',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ),
+            )
+          ],
+        ),
       );
 }

@@ -27,26 +27,37 @@ class _MessangerScreenState extends State<MessangerScreen> {
                   colors: [Color.fromRGBO(153, 127, 38, 1), Colors.white],
                 ),
               ),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 70,
-                  ),
-                  const Text(
-                    'CHAT BUSINESS',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 70,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  chat(true),
-                  chat(false),
-                  chat(true),
-                ],
+                    const Text(
+                      'CHAT BUSINESS',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 85,
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: 5,
+                        itemBuilder: (index, context) {
+                          return chat(true);
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -85,23 +96,24 @@ class _MessangerScreenState extends State<MessangerScreen> {
     );
   }
 
-  Widget chat(unread) => TextButton(
-        onPressed: () {},
-        child: Container(
-          height: 80,
-          width: 330,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.grey,
-                offset: Offset(0.0, 2.0),
-                blurRadius: 5.0,
-                spreadRadius: 1.0,
-              ),
-            ],
-          ),
+  Widget chat(unread) => Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        height: 80,
+        width: 330,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(0.0, 2.0),
+              blurRadius: 5.0,
+              spreadRadius: 1.0,
+            ),
+          ],
+        ),
+        child: GestureDetector(
+          onTap: () {},
           child: Row(
             children: [
               Padding(

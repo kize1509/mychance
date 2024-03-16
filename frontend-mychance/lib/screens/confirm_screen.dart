@@ -32,7 +32,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
     double frameRate = 30.0;
 
     Directory tempDir = await getTemporaryDirectory();
-    String outputPath = '${tempDir.path}/video1.mp4';
+    String outputPath = '${tempDir.path}/video5.mp4';
 
     String command =
         "-i $videoPath -c:v libx264 -b:v $videoBitrate -c:a aac -b:a $audioBitrate -strict experimental -ac $audioChannels -vf 'scale=$maxWidth:$maxHeight' -r $frameRate $outputPath";
