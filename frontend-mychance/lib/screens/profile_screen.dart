@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mychance/screens/project_upload_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -243,7 +244,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProjectUploadScreen();
+                    },
+                  ),
+                );
+              },
               child: const Icon(
                 CupertinoIcons.lightbulb,
                 size: 50,

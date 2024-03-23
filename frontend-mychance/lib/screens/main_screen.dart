@@ -6,7 +6,9 @@ import 'package:mychance/screens/profile_screen.dart';
 import 'package:mychance/screens/trending_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final int startupPage;
+
+  const MainScreen({super.key, required this.startupPage});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -14,6 +16,12 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int pageId = 2;
+
+  @override
+  void initState() {
+    super.initState();
+    pageId = widget.startupPage;
+  }
 
   final pages = [
     const MessangerScreen(),

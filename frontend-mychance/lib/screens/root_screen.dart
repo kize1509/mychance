@@ -125,7 +125,7 @@ class RootScreen extends StatelessWidget {
                 FloatingActionButton.extended(
                   heroTag: 'uploadVideo',
                   onPressed: () => showOptionsDialog(context),
-                  label: const Text("  Upload video  "),
+                  label: const Text("     LOGIN     "),
                 ),
               ],
             ),
@@ -140,12 +140,14 @@ class RootScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return const MainScreen();
+                          return const MainScreen(
+                            startupPage: 2,
+                          );
                         },
                       ),
                     );
                   },
-                  label: const Text("  Browse feed  "),
+                  label: const Text("  REGISTER  "),
                 ),
               ],
             ),
