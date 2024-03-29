@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mychance/screens/confirm_screen.dart';
+import 'package:mychance/screens/login_screen.dart';
 import 'package:mychance/screens/main_screen.dart';
 import 'package:video_player/video_player.dart';
 
@@ -123,8 +124,15 @@ class RootScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton.extended(
-                  heroTag: 'uploadVideo',
-                  onPressed: () => showOptionsDialog(context),
+                  heroTag: 'login',
+                  onPressed: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return const LoginScreen();
+                      },
+                    ),
+                  ),
                   label: const Text("     LOGIN     "),
                 ),
               ],
@@ -134,7 +142,7 @@ class RootScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton.extended(
-                  heroTag: 'browseFeed',
+                  heroTag: 'register',
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
