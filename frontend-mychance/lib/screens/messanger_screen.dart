@@ -37,6 +37,12 @@ class _MessangerScreenState extends State<MessangerScreen> {
                     const Text(
                       'CHAT BUSINESS',
                       style: TextStyle(
+                        shadows: [
+                          Shadow(
+                              blurRadius: 10.0,
+                              color: Colors.white,
+                              offset: Offset(2.0, 2.0))
+                        ],
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 25,

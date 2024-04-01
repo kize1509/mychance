@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MostFundedScreen extends StatefulWidget {
   const MostFundedScreen({super.key});
@@ -16,7 +15,7 @@ class _MostFundedScreenState extends State<MostFundedScreen> {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 15, left: 22, right: 22),
+            padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
             child: Container(
               width: 500,
               height: 700,
@@ -38,6 +37,12 @@ class _MostFundedScreenState extends State<MostFundedScreen> {
                     const Text(
                       'MOST FUNDED\nPROJECTS',
                       style: TextStyle(
+                        shadows: [
+                          Shadow(
+                              blurRadius: 10.0,
+                              color: Colors.white,
+                              offset: Offset(2.0, 2.0))
+                        ],
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -65,13 +70,17 @@ class _MostFundedScreenState extends State<MostFundedScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 150),
-            child: Expanded(
-              child: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (index, context) {
-                  return projects(900000, 1500000, true);
-                },
-              ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 3,
+                    itemBuilder: (index, context) {
+                      return projects(900000, 1500000, true);
+                    },
+                  ),
+                ),
+              ],
             ), //projects(900000, 1500000, true),
           )
         ],
@@ -124,17 +133,18 @@ class _MostFundedScreenState extends State<MostFundedScreen> {
                     Column(
                       children: [
                         const Padding(
-                          padding: EdgeInsets.only(bottom: 2),
+                          padding: EdgeInsets.only(bottom: 2, right: 30),
                           child: Text(
                             '@mychance',
+                            textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: Color.fromRGBO(200, 174, 83, 1),
                                 fontWeight: FontWeight.bold,
-                                fontSize: 25),
+                                fontSize: 20),
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                           width: 150,
                           child: ClipRRect(
                             borderRadius:
