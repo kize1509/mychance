@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mychance/screens/feed_screen.dart';
 import 'package:mychance/screens/messanger_screen.dart';
+import 'package:mychance/screens/most_funded_screen.dart';
 import 'package:mychance/screens/profile_screen.dart';
 import 'package:mychance/screens/trending_screen.dart';
 
@@ -27,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
     const MessangerScreen(),
     const TrendingScreen(),
     const FeedScreen(),
-    const Text('Most funded'),
+    const MostFundedScreen(),
     const ProfileScreen()
   ];
 
