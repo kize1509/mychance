@@ -119,6 +119,7 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      resizeToAvoidBottomInset: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -285,7 +286,261 @@ class _FeedScreenState extends State<FeedScreen> {
               Padding(
                 padding: const EdgeInsets.only(right: 2),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => SimpleDialog(
+                        contentPadding: const EdgeInsets.all(0),
+                        backgroundColor: Colors.transparent,
+                        children: [
+                          Stack(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 12, left: 12),
+                                child: Container(
+                                  width: 400,
+                                  height: 500,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(35),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                        Color.fromRGBO(153, 127, 38, 1),
+                                        Colors.white
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 12, left: 12),
+                                child: Container(
+                                  width: 400,
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(35),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                        Colors.black,
+                                        Color.fromRGBO(200, 145, 22, 1),
+                                      ],
+                                    ),
+                                  ),
+                                  child: const Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'INVEST IN',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 25,
+                                        ),
+                                      ),
+                                      Text(
+                                        '@vargicon',
+                                        style: TextStyle(
+                                          shadows: [
+                                            Shadow(
+                                              blurRadius: 10.0,
+                                              color: Colors.black,
+                                              offset: Offset(2.0, 2.0),
+                                            ),
+                                          ],
+                                          color:
+                                              Color.fromRGBO(153, 127, 38, 1),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 25,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 150),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      width: 250,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        gradient: const LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Colors.black,
+                                            Color.fromRGBO(200, 145, 22, 1),
+                                          ],
+                                        ),
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          'AMOUNT',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 120,
+                                      height: 70,
+                                      margin: const EdgeInsets.only(
+                                          top: 15, left: 200),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        gradient: const LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Color.fromRGBO(153, 127, 38, 1),
+                                            Colors.white,
+                                          ],
+                                        ),
+                                      ),
+                                      child: const Center(
+                                        child: TextField(
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 22),
+                                          textAlign: TextAlign.center,
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              labelText: '',
+                                              floatingLabelBehavior:
+                                                  FloatingLabelBehavior.never),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 300),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      width: 250,
+                                      height: 100,
+                                      margin: const EdgeInsets.only(right: 10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        gradient: const LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Colors.black,
+                                            Color.fromRGBO(200, 145, 22, 1),
+                                          ],
+                                        ),
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          '1 SHARE PRICE',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 120,
+                                      height: 70,
+                                      margin: const EdgeInsets.only(
+                                          top: 15, left: 200),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        gradient: const LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Color.fromRGBO(153, 127, 38, 1),
+                                            Colors.white,
+                                          ],
+                                        ),
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          '10\$',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 22),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  width: 90,
+                                  height: 80,
+                                  margin: const EdgeInsets.only(
+                                      top: 450, left: 150),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                        Color.fromRGBO(153, 127, 38, 1),
+                                        Colors.white,
+                                      ],
+                                    ),
+                                  ),
+                                  child: const Icon(
+                                    Icons.credit_card,
+                                    size: 50,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Container(
+                                  width: 75,
+                                  height: 65,
+                                  margin:
+                                      const EdgeInsets.only(top: 460, left: 65),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                        Color.fromRGBO(153, 127, 38, 1),
+                                        Colors.white,
+                                      ],
+                                    ),
+                                  ),
+                                  child: const Icon(
+                                    Icons.close_rounded,
+                                    size: 50,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  },
                   child: SizedBox(
                     width: 45,
                     height: 45,

@@ -9,6 +9,18 @@ class TrendingScreen extends StatefulWidget {
 }
 
 class _TrendingScreenState extends State<TrendingScreen> {
+  List<Widget> listOfProjects = [];
+
+  @override
+  void initState() {
+    setState(() {
+      listOfProjects.add(projects('@mymind.com', 134000, 41, 1));
+      listOfProjects.add(projects('@brainy', 120142, 40, 2));
+      listOfProjects.add(projects('@smarter', 100232, 25, 3));
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,9 +93,9 @@ class _TrendingScreenState extends State<TrendingScreen> {
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (index, context) {
-                      return projects(1, 1, false);
+                    itemCount: listOfProjects.length,
+                    itemBuilder: (context, index) {
+                      return listOfProjects[index];
                     },
                   ),
                 ),
@@ -98,7 +110,7 @@ class _TrendingScreenState extends State<TrendingScreen> {
     );
   }
 
-  Widget projects(invested, left, unread) => Stack(
+  Widget projects(name, likes, active, index) => Stack(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 10),
@@ -111,10 +123,10 @@ class _TrendingScreenState extends State<TrendingScreen> {
                     borderRadius: BorderRadius.circular(50),
                     color: const Color.fromRGBO(143, 8, 8, 1),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      '1.',
-                      style: TextStyle(
+                      '$index.',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -172,18 +184,21 @@ class _TrendingScreenState extends State<TrendingScreen> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10, top: 5),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
                       child: Stack(
                         children: [
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(bottom: 2, right: 30),
+                                padding:
+                                    const EdgeInsets.only(bottom: 2, right: 30),
                                 child: Text(
-                                  '@mymind.com',
+                                  name,
                                   textAlign: TextAlign.left,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       shadows: [
                                         Shadow(
                                             blurRadius: 10.0,
@@ -197,10 +212,11 @@ class _TrendingScreenState extends State<TrendingScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 2, right: 70),
+                                padding:
+                                    const EdgeInsets.only(top: 2, right: 70),
                                 child: Text(
-                                  '134.000 likes',
-                                  style: TextStyle(
+                                  '$likes likes',
+                                  style: const TextStyle(
                                       shadows: [
                                         Shadow(
                                             blurRadius: 10.0,
@@ -214,10 +230,10 @@ class _TrendingScreenState extends State<TrendingScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(right: 70),
+                                padding: const EdgeInsets.only(right: 70),
                                 child: Text(
-                                  'active: 41 hrs',
-                                  style: TextStyle(
+                                  'active: $active hrs',
+                                  style: const TextStyle(
                                     shadows: [
                                       Shadow(
                                           blurRadius: 10.0,
