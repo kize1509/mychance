@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 70, left: 37),
+            padding: const EdgeInsets.only(top: 70, left: 35),
             child: Stack(
               children: [
                 Padding(
@@ -93,13 +93,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 150),
+                  padding: const EdgeInsets.only(top: 130),
                   child: Stack(
                     children: [
                       Container(
                         width: 250,
                         height: 80,
-                        margin: const EdgeInsets.only(left: 38),
+                        margin: const EdgeInsets.only(left: 38, top: 28),
                         padding: const EdgeInsets.only(left: 20, bottom: 20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(35),
@@ -126,17 +126,24 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 60),
+                        child: const Text(
+                          'email',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 300),
+                  padding: const EdgeInsets.only(top: 280),
                   child: Stack(
                     children: [
                       Container(
                         width: 250,
                         height: 80,
-                        margin: const EdgeInsets.only(left: 38),
+                        margin: const EdgeInsets.only(left: 38, top: 28),
                         padding: const EdgeInsets.only(
                             left: 20, bottom: 20, top: 20),
                         decoration: BoxDecoration(
@@ -185,6 +192,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 60),
+                        child: const Text(
+                          'password',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ),
                     ],
@@ -305,7 +319,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 550, left: 95),
+                  padding: const EdgeInsets.only(top: 550, left: 90),
                   child: Column(
                     children: [
                       CircleAvatar(

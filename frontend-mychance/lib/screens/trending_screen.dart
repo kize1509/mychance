@@ -193,8 +193,7 @@ class _TrendingScreenState extends State<TrendingScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(bottom: 2, right: 30),
+                                padding: const EdgeInsets.only(right: 30),
                                 child: Text(
                                   name,
                                   textAlign: TextAlign.left,
@@ -230,7 +229,8 @@ class _TrendingScreenState extends State<TrendingScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 70),
+                                padding:
+                                    const EdgeInsets.only(right: 70, bottom: 1),
                                 child: Text(
                                   'active: $active hrs',
                                   style: const TextStyle(
@@ -252,7 +252,7 @@ class _TrendingScreenState extends State<TrendingScreen> {
                       ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.only(left: 40),
+                      padding: EdgeInsets.only(left: 45),
                       child: Icon(
                         CupertinoIcons.flame_fill,
                         color: Color.fromRGBO(239, 22, 22, 1),

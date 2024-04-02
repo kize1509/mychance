@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mychance/screens/confirm_screen.dart';
 import 'package:mychance/screens/login_screen.dart';
-import 'package:mychance/screens/main_screen.dart';
+import 'package:mychance/screens/register_screen.dart';
 import 'package:video_player/video_player.dart';
 
 class RootScreen extends StatelessWidget {
@@ -149,9 +149,7 @@ class RootScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return const MainScreen(
-                            startupPage: 2,
-                          );
+                          return const RegisterScreen();
                         },
                       ),
                     );

@@ -91,7 +91,7 @@ class _MostFundedScreenState extends State<MostFundedScreen> {
   Widget projects(invested, left, unread) => Container(
         margin: const EdgeInsets.only(bottom: 10),
         height: 80,
-        width: 430,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: Colors.white,
@@ -169,41 +169,39 @@ class _MostFundedScreenState extends State<MostFundedScreen> {
                   ],
                 ),
               ),
-              unread
-                  ? Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 35,
-                            width: 35,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: const Color.fromRGBO(200, 174, 83, 1),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                '3',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            'days left',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: const Color.fromRGBO(200, 174, 83, 1),
                       ),
-                    )
-                  : Container(),
+                      child: const Center(
+                        child: Text(
+                          '3',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Text(
+                      'days left',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

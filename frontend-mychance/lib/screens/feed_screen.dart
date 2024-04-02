@@ -396,6 +396,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                       height: 70,
                                       margin: const EdgeInsets.only(
                                           top: 15, left: 200),
+                                      padding: EdgeInsets.only(bottom: 15),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(30),
                                         gradient: const LinearGradient(
@@ -411,7 +412,8 @@ class _FeedScreenState extends State<FeedScreen> {
                                         child: TextField(
                                           style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 22),
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold),
                                           textAlign: TextAlign.center,
                                           keyboardType: TextInputType.number,
                                           decoration: InputDecoration(
@@ -451,7 +453,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 20),
+                                              fontSize: 18),
                                         ),
                                       ),
                                     ),
