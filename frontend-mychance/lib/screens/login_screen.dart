@@ -129,8 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: EdgeInsets.only(left: 60),
                         child: const Text(
-                          'email',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          'EMAIL',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
                     ],
@@ -197,8 +197,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: EdgeInsets.only(left: 60),
                         child: const Text(
-                          'password',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          'PASSWORD',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
                     ],

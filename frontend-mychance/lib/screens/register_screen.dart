@@ -75,7 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 150, left: 220),
+                padding: const EdgeInsets.only(top: 150, left: 215),
                 child: Stack(
                   children: [
                     Container(
@@ -103,6 +103,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             size: 60,
                           ),
                         ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 30, top: 402),
+                      child: const Text(
+                        'PROFILE PICTURE',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                     ),
                   ],
