@@ -1,6 +1,6 @@
 # mychance
 
-The mobile application that connects investors with the creators of innovative ideas.
+The mobile application that connects investors with the creators of innovative ideas. Client.
 
 ## Getting Started
 
